@@ -19,14 +19,23 @@
                 <input type="text" class="form-control" id="price" name="price" placeholder="ejemplo 28.80">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">quantity</label>
+                <label for="exampleInputEmail1">Quantity</label>
                 <input type="text" class="form-control" id="quantity" name="quantity" placeholder="cantidad de producto">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Cateoria</label>
-                <select id="idCat" name="idCat" class="form-control">
-                  @foreach($categories as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                <label>Tipo de cantidad</label>
+                <select id="idCat" name="typeQuantity" class="form-control">
+                    <option value="piezas">piezas(Pz)</option>
+                    <option value="metros">Metros(Mts)</option>
+                    <option value="kilos">Kilos(kG)</option>
+                    <option value="litros">Litros(Lt)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Marca</label>
+                <select id="idCat" name="idBranch" class="form-control">
+                  @foreach($branches as $branch)
+                    <option value="{{$branch->id}}">{{$branch->name}}</option>
                   @endforeach
                 </select>
             </div>
@@ -34,7 +43,7 @@
         </form>
     </div>
     <br>
-   <!-- <div align="center">
+    <div align="center">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -48,7 +57,9 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Cantidad</th>
+                    <th>unidades</th>
                     <th>Precio</th>
+                    <th>Marca</th>
 
                   </tr>
                 </thead>
@@ -59,7 +70,9 @@
                     <td>{{$product->code}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->quantity}}</td>
+                    <td>{{$product->type_quantity}}</td>
                     <td>{{$product->price}}</td>
+                    <td>{{$product->branch}}</td>
                   </tr>
                   @endforeach                    
                 </tbody>
@@ -69,5 +82,5 @@
        </div>
     </div>
 
-</div>-->
+</div>
 @stop

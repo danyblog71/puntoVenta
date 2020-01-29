@@ -28,9 +28,9 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-  <a class="nav-link collapsed" href="/category">
+  <a class="nav-link collapsed" href="/branch">
     <i class="fas fa-fw fa-cog"></i>
-    <span>Categorias</span>
+    <span>Marcas</span>
   </a>
 </li>
 

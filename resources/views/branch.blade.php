@@ -5,11 +5,10 @@
 @section('content')
 <div class="container-fluid">
     <div align="center">
-        <form class="col-md-8" action="/insert/category" method="GET">
+        <form class="col-md-8" action="/insert/branch" method="GET">
             <div class="form-group">
                 <label for="exampleInputEmail1">Marca</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Inserta una nueva marca">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
@@ -20,7 +19,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
-           <!-- <div class="card-body">
+           <div class="card-body">
                 <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -30,16 +29,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($categories as $category)
+                    @foreach($branches as $branch)
                     <tr>
-                        <td>{{$category->id}}</td>
-                        <td>{{$category->name}}</td>
+                        <td>{{$branch->id}}</td>
+                        <td>{{$branch->name}}</td>
                     </tr>
                     @endforeach                    
                     </tbody>
                 </table>
                 </div>
-            </div>-->
+            </div>
         </div>
     </div>
 

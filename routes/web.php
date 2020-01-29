@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ptoductController@index');
+Route::get('/branch', 'branchController@index');
+Route::get('/insert/branch', 'branchController@store');
+Route::get('/insert/product', 'ptoductController@store');
+
+
