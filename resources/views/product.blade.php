@@ -19,7 +19,7 @@
                 <input type="text" class="form-control" id="price" name="price" placeholder="ejemplo 28.80">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Quantity</label>
+                <label for="exampleInputEmail1">Cantidad</label>
                 <input type="text" class="form-control" id="quantity" name="quantity" placeholder="cantidad de producto">
             </div>
             <div class="form-group">
@@ -46,7 +46,7 @@
     <div align="center">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -73,6 +73,10 @@
                     <td>{{$product->type_quantity}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->branch}}</td>
+                    <td>
+                      <input type="button" value="Editar" onclick="edit('{{$product->id}}')"  class="btn btn-primary">
+                      <input type="button" value="Eliminar" onclick="eliminar('{{$product->id}}')"  class="btn btn-danger">
+                    </td>
                   </tr>
                   @endforeach                    
                 </tbody>
@@ -83,4 +87,15 @@
     </div>
 
 </div>
+@stop
+@section('script')
+<script>
+function edit(id){
+    window.location.href="/edit/product/"+id;
+}
+
+function eliminar(id){
+    window.location.href="/delete/product/"+id;
+}
+</script>
 @stop

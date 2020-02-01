@@ -13,7 +13,17 @@
 
 Route::get('/', 'ptoductController@index');
 Route::get('/branch', 'branchController@index');
+Route::get('/sales', 'ptoductController@sales');
 Route::get('/insert/branch', 'branchController@store');
 Route::get('/insert/product', 'ptoductController@store');
+Route::get('/edit/branch/{id}', 'branchController@edit');
+Route::get('/update/branch/{id}', 'branchController@update');
+Route::get('/delete/branch/{id}', 'branchController@destroy');
+
+Route::get('/edit/product/{id}', 'ptoductController@edit');
+Route::get('/update/product/{id}', 'ptoductController@update');
+Route::get('/delete/product/{id}', 'ptoductController@destroy');
+
+Route::get('getProduct/{code}', 'ptoductController@getProduct');
 
 

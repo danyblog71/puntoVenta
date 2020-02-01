@@ -17,7 +17,7 @@
     <div align="center">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Marcas</h6>
             </div>
            <div class="card-body">
                 <div class="table-responsive">
@@ -26,6 +26,7 @@
                     <tr>
                         <th>id</th>
                         <th>Nombre</th>
+                        <th>Accion</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,10 @@
                     <tr>
                         <td>{{$branch->id}}</td>
                         <td>{{$branch->name}}</td>
+                        <td>
+                            <input type="button" value="Editar" onclick="edit('{{$branch->id}}')"  class="btn btn-primary">
+                            <input type="button" value="Eliminar" onclick="eliminar('{{$branch->id}}')"  class="btn btn-danger">
+                        </td>
                     </tr>
                     @endforeach                    
                     </tbody>
@@ -43,4 +48,15 @@
     </div>
 
 </div>
+@stop
+@section('script')
+<script>
+function edit(id){
+    window.location.href="/edit/branch/"+id;
+}
+
+function eliminar(id){
+    window.location.href="/delete/branch/"+id;
+}
+</script>
 @stop

@@ -8,6 +8,14 @@ use App\Product;
 
 class ptoductController extends Controller
 {
+    public function getProduct($code){
+        $product = Product::where('code', '=', $code)->get();
+        return json_encode($product[0]);       
+    }
+
+    public function sales(){
+        return view('sales_register');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +63,24 @@ class ptoductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::where('id', '=', $id)->get();
+        $product[0]->code = $request->get('code');
+        $product[0]->name = $request->get('name');
+        $product[0]->price = $request->get('price');
+        $product[0]->quantity = $request->get('quantity');
+        $product[0]->type_quantity = $request->get('typeQuantity');
+        $product[0]->id_branch = $request->get('idBranch');
+
+        $product[0]->save();
+        return redirect('/');
+    }
+
+    public function edit($id){
+        $getProduct = Product::where('id', '=', $id)->get();
+        $product = $getProduct[0];
+        $branches = Branch::all();
+        //dd($branch);
+        return view('edit_product', compact('product', 'branches'));
     }
 
     /**
@@ -66,6 +91,8 @@ class ptoductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/');
     }
 }

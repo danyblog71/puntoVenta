@@ -44,7 +44,18 @@ class branchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $branch = Branch::where('id', '=', $id)->get();
+        $branch[0]->name = $request->get('name');
+        $branch[0]->save();
+        return redirect('/branch');
+    }
+
+    public function edit($id)
+    {
+        $getBranch = Branch::where('id', '=', $id)->get();
+        $branch = $getBranch[0];
+        //dd($branch);
+        return view('edit_branch', compact('branch'));        
     }
 
     /**
@@ -55,6 +66,8 @@ class branchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $branch = Branch::find($id);
+        $branch->delete();
+        return redirect('/branch');
     }
 }
