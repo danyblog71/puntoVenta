@@ -14,9 +14,10 @@ class CreateSoldProductsTable extends Migration
     public function up()
     {
         Schema::create('sold_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('id_sale')->unsigned();
             $table->bigInteger('id_product')->unsigned();
+            $table->double('quantity')->nullable();
+            $table->double('importe')->nullable();
             $table->foreign('id_sale')->references('id')->on('sales')->onDelete('cascade');
             $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();

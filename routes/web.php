@@ -25,5 +25,6 @@ Route::get('/update/product/{id}', 'ptoductController@update');
 Route::get('/delete/product/{id}', 'ptoductController@destroy');
 
 Route::get('getProduct/{code}', 'ptoductController@getProduct');
-
+Route::get('/register/sale', 'salesController@store');
+Route::get('/new/sale', 'salesController@create');
 
