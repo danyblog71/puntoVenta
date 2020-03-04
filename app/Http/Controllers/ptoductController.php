@@ -102,4 +102,10 @@ class ptoductController extends Controller
         $product->delete();
         return redirect('/');
     }
+
+    public function getBarcode()
+    {
+        return View('barcode');
+    }
+
 }

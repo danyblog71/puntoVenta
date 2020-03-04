@@ -28,3 +28,6 @@ Route::get('getProduct', 'ptoductController@getProduct');
 Route::get('/register/sale', 'salesController@store');
 Route::get('/new/sale', 'salesController@create');
 
+Route::get('/barcode', 'ptoductController@getBarcode');
+Route::get('/generate/code/{code}', 'ptoductController@generateBarcode');
+

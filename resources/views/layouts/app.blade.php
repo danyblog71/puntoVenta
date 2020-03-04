@@ -100,6 +100,10 @@
 
   <!-- Page level custom scripts -->
   <script src="{{asset('assets/js/demo/datatables-demo.js')}}"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+
+  
 
     
 </body>
