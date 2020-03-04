@@ -8,9 +8,16 @@ use App\Product;
 
 class ptoductController extends Controller
 {
-    public function getProduct($code){
-        $product = Product::where('code', '=', $code)->get();
-        return json_encode($product[0]);       
+    public function getProduct(Request $request){
+        $product = Product::where('code', '=', $request->get('code'))->get();
+        $z = $request->get('cantidad');
+        if ($z <= $product[0]->quantity) {
+            $x = $product[0]->quantity - $request->get('cantidad');
+            return json_encode($product[0]); 
+        } else {
+            return 0;
+        }        
+              
     }
 
     public function sales(){

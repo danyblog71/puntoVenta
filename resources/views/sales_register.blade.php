@@ -33,7 +33,7 @@
     <div class="card-body">
       <div class="form-group">
         <label  align="center">Total</label>
-        <input type="text" class="form-control" id="total" name="total">
+        <input type="text" class="form-control" id="total" name="total" disabled>
       </div>
     </div>
 
@@ -54,39 +54,46 @@
     })
     $('#add').click(function(){
       $.ajax({
-        url: "getProduct/"+$('#code').val(),
+        url: "getProduct/",
+        data: {code:$('#code').val(), cantidad:$('#cant').val()},
         method: "GET",
         success: function(result)
-        {       
-          var obj = JSON.parse(result); 
-          var cant = $('#cant').val();
-          var precio = obj.price;
-          var x = cant*precio;
-          var check;
-          var dates = {id: obj.id, code:obj.code, nombre:obj.name, precio:obj.price, cantidad:cant, importe:x };
-          /*var rowNode = table
-          .row.add([ obj.id, obj.code, obj.name, obj.price, cant, x ])
-          .draw()
-          .node(); */ 
-          for (let j = 0; j < products.length; j++) {
-            if(products[j].code == obj.code) {
-              products[j].cantidad = parseFloat(products[j].cantidad) + parseFloat(cant);
-              alert(products[j].cantidad);
-              check = true;
-              break;
-            } else {
-              check = false;
-            }           
-          }
-          if (check != true) {
-            products.push(dates); 
-            generar_tabla(products);            
+        {  
+          if (result == 0) {
+            alert('no hay suficientes Productso')
           } else {
-            generar_tabla(products);
+            var obj = JSON.parse(result); 
+            var cant = $('#cant').val();
+            var precio = obj.price;
+            var x = cant*precio;
+            var check;
+            var dates = {id: obj.id, code:obj.code, nombre:obj.name, precio:obj.price, cantidad:cant, importe:x };
+
+            for (let j = 0; j < products.length; j++) {
+              if(products[j].code == obj.code) {
+                var z = parseFloat(products[j].cantidad) + parseFloat(cant);
+                if (z <= obj.quantity) {
+                  check = true;
+                  products[j].cantidad = z;
+                  break;
+                } else {
+                  check = true;
+                  alert('No hay suficientes productos');
+                }              
+              } else {
+                check = false;
+              }           
+            }
+            if (check != true) {
+              products.push(dates); 
+              generar_tabla(products);            
+            } else {
+              generar_tabla(products);
+            }            
           }
-          
           $('#code').val("");
-          $('#cant').val("");            
+          $('#cant').val("");     
+                      
         },
         error: function(){
           alert('Producto no encontrado Verifique el codigo');
@@ -136,26 +143,16 @@
         data: {'id': dates[i].id, 'cantidad':dates[i].cantidad, 'importe':dates[i].importe},
         success: function(result)
         {   
-          alert(result);    
-          //document.getElementById('tablePrint').innerHTML = result;
+          console.log(result);    
+
           },
         error: function(){
           alert('Producto no encontrado Verifique el codigo');
         }
       });      
     }
-    /*$.ajax({
-        url: "/register/sale",
-        method: "GET",
-        data: {'array': dates},
-        success: function(result)
-        {       
-          document.getElementById('tablePrint').innerHTML = result;
-          },
-        error: function(){
-          alert('Producto no encontrado Verifique el codigo');
-        }
-      }); */
+    window.location.href = '{{url("/sales")}}';
+
   }
 
   function insertSale(total) {

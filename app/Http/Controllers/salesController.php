@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sale;
 use App\SoldProduct;
+use App\Product;
 
 class salesController extends Controller
 {
@@ -46,15 +47,19 @@ class salesController extends Controller
         $id = $request->get('id');
         $quantity = $request->get('cantidad');
         $importe = $request->get('importe');
-       /* $soldProduct = SoldProduct::insert(
-            ['id_sale' => $idSale->id, 'id_product' => $id, 'quantity' => $quantity, 'importe' => $importe ]
-        );*/
         $sold = new SoldProduct;
         $sold->id_sale = $idSale;
         $sold->id_product = $id;
         $sold->quantity = $quantity;
         $sold->importe = $importe;
         $sold->save();
+
+
+        $product = Product::find($id);
+        $x = $product->quantity - $request->get('cantidad');
+        $product->quantity = $x;
+        $product->save();
+
     }
 
     /**
