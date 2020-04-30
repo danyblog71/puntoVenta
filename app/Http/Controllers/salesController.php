@@ -106,4 +106,18 @@ class salesController extends Controller
     {
         //
     }
+
+    public function setTicket(){
+        $sale = Sale::all()->last();
+        $productSould = SoldProduct::where("id_sale", "=", $sale->id)->get();
+        $productsData = [];
+        foreach ($productSould as $key) {
+            $product = Product::where('id', '=', $key->id_product)->get();
+            //dd($product[0]->name);
+            $productData[] = ['name' => $product[0]->name, 'precio' => $product[0]->price, 'cant' => $key->quantity, 'import' =>$key->importe];
+        }
+        json_encode($productData);
+        $total = $sale->total;
+        return view('ticket', compact('productData', 'total'));
+    }
 }

@@ -43,16 +43,10 @@
                 imgData = canvas.toDataURL(
                     'image/png');
                 var doc = new jsPDF('p', 'pt', 'a4');
-                doc.addImage(imgData, 'PNG', 0, 10);
-                doc.addImage(imgData, 'PNG', 230, 10);
-                doc.addImage(imgData, 'PNG', 0, 150);
-                doc.addImage(imgData, 'PNG', 230, 150);
-                doc.addImage(imgData, 'PNG', 0, 300);
-                doc.addImage(imgData, 'PNG', 230, 300);
-                doc.addImage(imgData, 'PNG', 0, 450);
-                doc.addImage(imgData, 'PNG', 230, 450);
-                doc.addImage(imgData, 'PNG', 0, 600);
-                doc.addImage(imgData, 'PNG', 230, 600);
+                doc.addImage(imgData, 'PNG', 10, 0);
+                doc.addImage(imgData, 'PNG', -230, 0);
+                doc.addImage(imgData, 'PNG', 10, 120);
+                doc.addImage(imgData, 'PNG', -230, 120);
                 doc.save('sample-file.pdf');
             }
         });

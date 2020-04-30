@@ -39,6 +39,7 @@
 
     <div align="center">             
         <input type="button" value="Realizar" id="realizar" class="btn btn-primary">
+        <input type="button" value="Cancelar" id="cancelar" class="btn btn-danger">
     </div>
 @stop
 
@@ -151,6 +152,7 @@
         }
       });      
     }
+    window.open("/ticket", "Diseño Web", "width=900, height=600")
     window.location.href = '{{url("/sales")}}';
 
   }
@@ -170,5 +172,9 @@
         }
       });
   }
+
+  $('#cancelar').click(function(){
+    window.location.href = '{{url("/sales")}}';
+  })
 </script>
 @stop

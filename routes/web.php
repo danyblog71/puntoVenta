@@ -31,3 +31,7 @@ Route::get('/new/sale', 'salesController@create');
 Route::get('/barcode', 'ptoductController@getBarcode');
 Route::get('/generate/code/{code}', 'ptoductController@generateBarcode');
 
+Route::get('/ticket', 'salesController@setTicket');
+
+Route::get('/Sales/History', 'salesController@history');
+
